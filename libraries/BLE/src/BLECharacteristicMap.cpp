@@ -4,8 +4,7 @@
  *  Created on: Jun 22, 2017
  *      Author: kolban
  */
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
+
 
 #include "sdkconfig.h"
 #if defined(CONFIG_BLUEDROID_ENABLED)
@@ -135,4 +134,3 @@ std::string BLECharacteristicMap::toString() {
 
 
 #endif /* CONFIG_BLUEDROID_ENABLED */
-#endif /* SOC_BLE_SUPPORTED */

@@ -7,8 +7,6 @@
 
 #include "BLERemoteCharacteristic.h"
 
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
 
 #include "sdkconfig.h"
 #if defined(CONFIG_BLUEDROID_ENABLED)
@@ -624,4 +622,4 @@ void BLERemoteCharacteristic::setAuth(esp_gatt_auth_req_t auth) {
 }
 
 #endif /* CONFIG_BLUEDROID_ENABLED */
-#endif /* SOC_BLE_SUPPORTED */
+

@@ -371,17 +371,9 @@ void HardwareSerial::begin(unsigned long baud, uint32_t config, int8_t rxPin, in
                 }
             break;
 #endif
-#if SOC_UART_NUM > 2                   // may save some flash bytes...
-            case UART_NUM_2:
-               if (rxPin < 0 && txPin < 0) {
-                    rxPin = RX2;
-                    txPin = TX2;
-                }
-            break;
-#endif
+
         }
     }
-
     if(_uart) {
         // in this case it is a begin() over a previous begin() - maybe to change baud rate
         // thus do not disable debug output
@@ -454,7 +446,7 @@ void HardwareSerial::end(bool fullyTerminate)
         uartEnd(_uart);  // fully detach all pins and delete the UART driver
     } else {
       // do not invalidate callbacks, detach pins, invalidate DBG output 
-      uart_driver_delete(_uart_nr);
+      uart_driver_delete((uart_port_t)_uart_nr);
     }
     _uart = 0;
     _destroyEventTask();

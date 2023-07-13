@@ -7,8 +7,7 @@
 
 #ifndef _BLEEddystoneURL_H_
 #define _BLEEddystoneURL_H_
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
+
 
 #include "BLEUUID.h"
 
@@ -43,5 +42,4 @@ private:
 
 }; // BLEEddystoneURL
 
-#endif /* SOC_BLE_SUPPORTED */
 #endif /* _BLEEddystoneURL_H_ */

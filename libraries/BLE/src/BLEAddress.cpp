@@ -4,8 +4,8 @@
  *  Created on: Jul 2, 2017
  *      Author: kolban
  */
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
+// #include "soc/soc_caps.h"
+// #if SOC_BLE_SUPPORTED
 
 #include "sdkconfig.h"
 #if defined(CONFIG_BLUEDROID_ENABLED)
@@ -119,4 +119,4 @@ std::string BLEAddress::toString() {
 } // toString
 
 #endif
-#endif /* SOC_BLE_SUPPORTED */
+// #endif /* SOC_BLE_SUPPORTED */

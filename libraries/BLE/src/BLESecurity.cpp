@@ -5,9 +5,6 @@
  *      Author: chegewara
  */
 
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
-
 #include "BLESecurity.h"
 #include "sdkconfig.h"
 #if defined(CONFIG_BLUEDROID_ENABLED)
@@ -117,4 +114,4 @@ char* BLESecurity::esp_key_type_to_str(esp_ble_key_type_t key_type) {
 } // esp_key_type_to_str
 
 #endif /* CONFIG_BLUEDROID_ENABLED */
-#endif /* SOC_BLE_SUPPORTED */
+

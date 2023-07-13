@@ -7,8 +7,7 @@
 
 #ifndef COMPONENTS_CPP_UTILS_BLEBEACON_H_
 #define COMPONENTS_CPP_UTILS_BLEBEACON_H_
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
+
 
 #include "BLEUUID.h"
 /**
@@ -44,4 +43,4 @@ public:
 }; // BLEBeacon
 
 #endif /* SOC_BLE_SUPPORTED */
-#endif /* COMPONENTS_CPP_UTILS_BLEBEACON_H_ */
+

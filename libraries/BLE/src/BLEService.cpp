@@ -7,8 +7,7 @@
 
 // A service is identified by a UUID.  A service is also the container for one or more characteristics.
 
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
+
 
 #include "sdkconfig.h"
 #if defined(CONFIG_BLUEDROID_ENABLED)
@@ -414,4 +413,4 @@ BLEServer* BLEService::getServer() {
 } // getServer
 
 #endif /* CONFIG_BLUEDROID_ENABLED */
-#endif /* SOC_BLE_SUPPORTED */
+

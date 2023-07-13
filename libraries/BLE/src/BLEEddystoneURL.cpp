@@ -4,8 +4,7 @@
  *  Created on: Mar 12, 2018
  *      Author: pcbreflux
  */
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
+
 
 #include "sdkconfig.h"
 #if defined(CONFIG_BLUEDROID_ENABLED)
@@ -149,4 +148,4 @@ void BLEEddystoneURL::setURL(std::string url) {
 
 
 #endif
-#endif /* SOC_BLE_SUPPORTED */
+

@@ -11,8 +11,7 @@
  *  Created on: Jul 3, 2017
  *      Author: kolban
  */
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
+
 #include "sdkconfig.h"
 #if defined(CONFIG_BLUEDROID_ENABLED)
 #include <sstream>
@@ -593,4 +592,4 @@ size_t BLEAdvertisedDevice::getPayloadLength() {
 }
 
 #endif /* CONFIG_BLUEDROID_ENABLED */
-#endif /* SOC_BLE_SUPPORTED */
+

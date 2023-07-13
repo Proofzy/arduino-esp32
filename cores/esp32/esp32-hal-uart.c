@@ -578,13 +578,7 @@ static void ARDUINO_ISR_ATTR uart1_write_char(char c)
 }
 #endif
 
-#if SOC_UART_NUM > 2
-static void ARDUINO_ISR_ATTR uart2_write_char(char c)
-{
-    while (uart_ll_get_txfifo_len(&UART2) == 0);
-    uart_ll_write_txfifo(&UART2, (const uint8_t *) &c, 1);
-}
-#endif
+
 
 void uart_install_putc()
 {
@@ -597,11 +591,7 @@ void uart_install_putc()
         ets_install_putc1((void (*)(char)) &uart1_write_char);
         break;
 #endif
-#if SOC_UART_NUM > 2
-    case 2:
-        ets_install_putc1((void (*)(char)) &uart2_write_char);
-        break;
-#endif
+
     default:
         ets_install_putc1(NULL);
         break;
@@ -870,11 +860,7 @@ uartDetectBaudrate(uart_t *uart)
 */
 
 // gets the right TX SIGNAL, based on the UART number
-#if SOC_UART_NUM > 2
-#define UART_TX_SIGNAL(uartNumber) (uartNumber == UART_NUM_0 ? U0TXD_OUT_IDX : (uartNumber == UART_NUM_1 ? U1TXD_OUT_IDX : U2TXD_OUT_IDX))
-#else
-#define UART_TX_SIGNAL(uartNumber) (uartNumber == UART_NUM_0 ? U0TXD_OUT_IDX : U1TXD_OUT_IDX)
-#endif
+
 /*
    Make sure UART's RX signal is connected to TX pin
    This creates a loop that lets us receive anything we send on the UART
@@ -882,7 +868,7 @@ uartDetectBaudrate(uart_t *uart)
 void uart_internal_loopback(uint8_t uartNum, int8_t rxPin)
 {
   if (uartNum > SOC_UART_NUM - 1 || !GPIO_IS_VALID_GPIO(rxPin)) return;
-  esp_rom_gpio_connect_out_signal(rxPin, UART_TX_SIGNAL(uartNum), false, false);
+  //esp_rom_gpio_connect_out_signal(rxPin, UART_TX_SIGNAL(uartNum), false, false);
 }
 
 /*

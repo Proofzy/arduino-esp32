@@ -7,8 +7,8 @@
 
 #ifndef COMPONENTS_CPP_UTILS_BLEUUID_H_
 #define COMPONENTS_CPP_UTILS_BLEUUID_H_
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
+// #include "soc/soc_caps.h"
+// #if SOC_BLE_SUPPORTED
 
 #include "sdkconfig.h"
 #include <string>
@@ -41,4 +41,4 @@ private:
 
 #endif /* CONFIG_BLUEDROID_ENABLED */
 #endif /* SOC_BLE_SUPPORTED */
-#endif /* COMPONENTS_CPP_UTILS_BLEUUID_H_ */
+// #endif /* COMPONENTS_CPP_UTILS_BLEUUID_H_ */

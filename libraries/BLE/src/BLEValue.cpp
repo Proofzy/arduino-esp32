@@ -4,8 +4,6 @@
  *  Created on: Jul 17, 2017
  *      Author: kolban
  */
-#include "soc/soc_caps.h"
-#if SOC_BLE_SUPPORTED
 
 #include "sdkconfig.h"
 #if defined(CONFIG_BLUEDROID_ENABLED)
@@ -131,4 +129,3 @@ void BLEValue::setValue(uint8_t* pData, size_t length) {
 
 
 #endif /* CONFIG_BLUEDROID_ENABLED */
-#endif /* SOC_BLE_SUPPORTED */

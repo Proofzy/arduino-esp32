@@ -1,6 +1,8 @@
+#include <iostream>
+
 #include "Update.h"
 #include "Arduino.h"
-#include "spi_flash_mmap.h"
+#include "esp_spi_flash.h"
 #include "esp_ota_ops.h"
 #include "esp_image_format.h"
 
@@ -55,6 +57,23 @@ bool UpdateClass::_enablePartition(const esp_partition_t* partition){
         return false;
     }
     return ESP.partitionWrite(partition, 0, (uint32_t*) _skipBuffer, ENCRYPTED_BLOCK_SIZE);
+}
+
+bool UpdateClass::clear_buffer() {
+
+    if(_buffer) {
+        delete[] _buffer;
+    }
+
+    _buffer = (uint8_t*)malloc(SPI_FLASH_SEC_SIZE);
+    if(!_buffer){
+        log_e("malloc failed");
+        return false;
+    }
+
+    _bufferLen = 0;
+
+    return true;
 }
 
 UpdateClass::UpdateClass()
@@ -227,6 +246,7 @@ bool UpdateClass::_writeBuffer(){
     _md5.add(_buffer, _bufferLen);
     _progress += _bufferLen;
     _bufferLen = 0;
+    log_i("Target md5: %s, Current md5: %s", _target_md5.c_str(), _md5.toString());
     if (_progress_callback) {
         _progress_callback(_progress, _size);
     }
@@ -277,12 +297,16 @@ bool UpdateClass::setMD5(const char * expected_md5){
 
 bool UpdateClass::end(bool evenIfRemaining){
     if(hasError() || _size == 0){
+        std::cerr << "I ended here 1" << std::endl;
+        std::flush(std::cerr);
         return false;
     }
 
     if(!isFinished() && !evenIfRemaining){
         log_e("premature end: res:%u, pos:%u/%u\n", getError(), progress(), _size);
         _abort(UPDATE_ERROR_ABORT);
+        std::cerr << "I ended here 2" << std::endl;
+        std::flush(std::cerr);
         return false;
     }
 
@@ -294,6 +318,8 @@ bool UpdateClass::end(bool evenIfRemaining){
     }
 
     _md5.calculate();
+    std::cerr << "MD5 string: " << _md5.toString().c_str() << ", MD5 Expected: " << _target_md5.c_str() << std::endl;
+    std::flush(std::cerr);
     if(_target_md5.length()) {
         if(_target_md5 != _md5.toString()){
             _abort(UPDATE_ERROR_MD5);

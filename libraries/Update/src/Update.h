@@ -54,6 +54,8 @@ class UpdateClass {
     */
     size_t write(uint8_t *data, size_t len);
 
+    bool clear_buffer();
+
     /*
       Writes the remaining bytes from the Stream to the flash
       Uses readBytes() and sets UPDATE_ERROR_STREAM on timeout
